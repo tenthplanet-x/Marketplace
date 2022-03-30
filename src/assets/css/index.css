@@ -1,0 +1,47 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    outline: none;
+}
+
+@font-face {
+    font-family: "Roobert";
+    src: url("../font/rooberttrial-regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: "Roobert", "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif
+}
+
+body::-webkit-scrollbar {
+    width: 0 !important
+}
+
+/*
+#layaCanvas, #layaContainer {
+    z-index: -1;
+}*/
+
+body {
+    background-color: black;
+}
+
+.full-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.background-full {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@import "layout.css";

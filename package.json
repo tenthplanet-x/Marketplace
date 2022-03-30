@@ -1,0 +1,52 @@
+{
+  "name": "mobox-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\"",
+    "zl": "vue-cli-service serve --mode zl",
+    "prod": "vue-cli-service build --mode prod"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "core-js": "^3.6.5",
+    "fullpage.js": "^3.1.2",
+    "gapi": "0.0.3",
+    "hellojs": "^1.19.5",
+    "video.js": "^7.17.0",
+    "vue": "^3.0.0",
+    "vue-axios": "^3.4.0",
+    "vue-i18n": "^9.1.0",
+    "vue-router": "^4.0.12",
+    "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "@intlify/vue-i18n-loader": "^3.0.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "vue-cli-plugin-i18n": "~2.3.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
