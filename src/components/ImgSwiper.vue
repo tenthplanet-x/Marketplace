@@ -1,5 +1,5 @@
 <template>
-    <div class="x-flex-col-x_center-y_center">
+    <div class="flex flex-col justify-center items-center">
         <div style="" class="swiper" ref="itemContainer">
             <li class="prev">
                 <img src="../assets/img/swiper-0.jpg">
@@ -13,26 +13,13 @@
                 <img src="../assets/img/swiper-1.jpg">
             </li>
 
-            <li>
+            <li class="hide">
                 <img src="../assets/img/swiper-3.jpg">
             </li>
 
             <div class="leftBox" @click="showPrev"></div>
             <div class="rightBox" @click="showNext"></div>
 
-        </div>
-
-        <div style="color: #fff">
-            <h1 style="font-weight: 600;
-font-size: 64px;
-line-height: 77px;margin: 0">
-                Roadmap
-            </h1>
-            <h3 style="font-weight: 400;
-font-size: 32px;
-line-height: 48px;margin: 10px 0;">
-                1.Mech-Wings is an advanced system that’d drastically incease mobility
-            </h3>
         </div>
     </div>
 
@@ -89,7 +76,7 @@ line-height: 48px;margin: 10px 0;">
                     } else if (i === next) {
                         this.items[i].className = "next";
                     } else {
-                        this.items[i].className = "";
+                        this.items[i].className = "hide";
                     }
                 }
                 this.idx = idx;
@@ -100,7 +87,6 @@ line-height: 48px;margin: 10px 0;">
 
 <style scoped>
     .swiper {
-
         width: 100%;
         height: 500px;
         position: relative;
@@ -110,13 +96,15 @@ line-height: 48px;margin: 10px 0;">
     .swiper li {
         transition: all 0.8s;
 
-        border-radius: 6px;
+       
         overflow: hidden;
+        /**
         box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.5);
 
         width: 800px;
         height: 360px;
-
+ border-radius: 6px;
+ */
         position: absolute;
         top: 50%;
         left: 50%;
@@ -130,19 +118,40 @@ line-height: 48px;margin: 10px 0;">
 
     .swiper li.now {
         z-index: 9;
-        transform: translate(-50%, -50%) scale(1.2);
+    /**    transform: translate(-50%, -50%) scale(1.2); */ 
+transform: translate(-50%, -50%);
+        width: 870px;
+        height: 500px;
+border-radius: 10px;
+border: 1px solid;
+border-image: linear-gradient(180deg, rgba(209, 16, 0, 1), rgba(214, 0, 124, 1), rgba(255, 249, 116, 1), rgba(0, 150, 4, 1), rgba(0, 200, 194, 1)) 1 1;
+
     }
 
     .swiper li.next {
         z-index: 6;
         transform: translate(-10%, -50%);
+
+width: 744px;
+height: 428px;
+background: linear-gradient(270deg, #1D0943 0%, rgba(33, 9, 78, 0) 100%);
+border-radius: 10px;
+
     }
 
     .swiper li.prev {
         z-index: 6;
         transform: translate(-90%, -50%);
+
+        width: 744px;
+height: 428px;
+background: linear-gradient(90deg, #1D0943 0%, rgba(33, 9, 78, 0) 100%);
+border-radius: 10px;
     }
 
+    .swiper li.hide {
+display: none;
+    }
 
     .leftBox,
     .rightBox {

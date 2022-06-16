@@ -1,47 +1,39 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-    outline: none;
-}
+@layer base {
+    html {
+      color: #FFF;
+    }
+    * {
+        outline: none;
+    }
 
-@font-face {
-    font-family: "Roobert";
-    src: url("../font/rooberttrial-regular.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
+    body::-webkit-scrollbar {
+      width: 0 !important;
+    }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    font-family: "Roobert", "PingFang SC", "Lantinghei SC", "Microsoft YaHei", "HanHei SC", "Helvetica Neue", "Open Sans", Arial, "Hiragino Sans GB", "微软雅黑", STHeiti, "WenQuanYi Micro Hei", SimSun, sans-serif
-}
+    @font-face {
+      font-family: Classic Robot;
+      font-weight: 400;
+      src: url("../font/ClassicRobot.otf") format("opentype");
+    }
 
-body::-webkit-scrollbar {
-    width: 0 !important
-}
+    @font-face {
+      font-family: Dream MMA;
+      font-weight: 400;
+      src: url("../font/DreamMMA.ttf") format("truetype");
+    }
 
-/*
-#layaCanvas, #layaContainer {
-    z-index: -1;
-}*/
-
-body {
-    background-color: black;
-}
-
-.full-page {
-    width: 100vw;
-    height: 100vh;
-}
-
-.background-full {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-
-@import "layout.css";
+    @font-face {
+      font-family: Poppins Regular;
+      font-weight: 400;
+      src: url("../font/Poppins-Regular.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: Poppins SemiBold;
+      font-weight: 400;
+      src: url("../font/Poppins-SemiBold.ttf") format("truetype");
+    }
+  }

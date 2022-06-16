@@ -2,21 +2,15 @@ import axios from "axios";
 import {CONSTANT} from "../constant";
 import {getToken} from "../storage";
 
-/**
- *
- * 全局的 axios 默认值
- */
-axios.defaults.baseURL = process.env.VUE_APP_SERVER_HOST;
+
+axios.defaults.baseURL = import.meta.env.VITE_APP_SERVER_HOST;
+
 axios.defaults.timeout = 2500 * 100;
 
 
 const REG = /^-/;
-const DEFAULT_MSG = "请求出错！";
+const DEFAULT_MSG = "something wrong!";
 
-/**
- * 拦截器,在请求或响应被 then 或 catch 处理前拦截它们。
- */
-// 添加请求拦截器
 axios.interceptors.request.use(function (config) {
     console.log("request url ", config.url);
     if (!config) {
@@ -34,12 +28,10 @@ axios.interceptors.request.use(function (config) {
     if (!config.headers[CONSTANT.APP]) {
         config.headers[CONSTANT.APP] = CONSTANT.APP_VALUE;
     }
-    // 在发送请求之前做些什么
     return config;
 }, function (error) {
     console.error(error.message ? error.message : DEFAULT_MSG);
     error.handled = true;
-    // 对请求错误做些什么
     return Promise.reject(error);
 });
 
@@ -48,7 +40,7 @@ axios.interceptors.response.use(function (response) {
         let respData = response.data;
         if (respData.state === "000000") {
             return respData.data ? respData.data : null
-        } else if (respData.state === "000401") {//后端判断登录状态
+        } else if (respData.state === "000401") {
 
 
         } else if (REG.test(respData.state)) {

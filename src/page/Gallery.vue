@@ -1,76 +1,85 @@
 <template>
-  <div class="gallery full-page x-flex-col-x_start-y_start">
-    <div style="height: 120px;width: 100%;" class="x-flex-item-shrink0">
-    </div>
+  <div class="gallery font-poppinsr">
 
-    <div class="x-flex-x_start-y_start x-flex-item-grow" style="background: #FFF;width: 100%;padding: 20px;">
-      <div class="x-flex-item-shrink0" style="width: 380px;">
-        <div class="filter-title x-flex-x-start-y-end">
-          <span class="item filter-h1">Filter</span>
-          <div class=" x-flex-x-start-y-end" style="margin-left: 14px; cursor: pointer;">
-            <img class="item filter-reset-icon" src="../assets/img/reset.png">
-            <span class="item filter-reset-txt">Reset</span>
+    <div class="flex flex-row ">
+      <div class="left">
+
+        <div class="flex flex-row items-baseline">
+          <span class="font-poppinss big-text" style="margin-right: 18px;">Filter</span>
+          <div class="cursor-pointer flex flex-row items-baseline">
+            <img class="reset-icon" src="../assets/img/gallery_reset@2x.png">
+            <span class="reset-text">Reset</span>
           </div>
 
         </div>
-        <div style="margin-top: 15px;margin-bottom: 15px;">
-          <input class="filter-input" placeholder="Search by serial...">
-        </div>
-        <div>
 
-          <div class="filter-cate" v-for="item in galleryProps" key="item.key">
-            <div @click.stop="togglePropExpand(item)" class="filter-prop-key x-flex-x_start-y_center">
-              <img src="../assets/img/gallery_sort.png" class="x-flex-item-shrink0">
-              <span class="filter-h2 x-flex-item-grow" style="margin-left: 10px;">{{ item.key }}</span>
-              <div v-if="item.expand" class="x-flex-item-shrink0 filter-reset-txt">{{item.count}}</div>
-              <img v-else src="../assets/img/arrow_down.png" class="x-flex-item-shrink0">
+        <div>
+          <input class="filter-input" placeholder="Search by id" v-model="search_id" @input="searchById" />
+        </div>
+
+        <div style="margin-top: 26px;">
+
+          <div v-for="item in galleryProps" key="item.key">
+
+            <div class="flex flex-row items-center f-p cursor-pointer" @click.stop="togglePropExpand(item)">
+              <img class="f-p-icon" src="../assets/img/gallery_sort@2x.png">
+              <span class="f-p-text grow" style="margin-left: 12px;">{{ item.key }}</span>
+              <img v-if="item.expand" class="f-p-expand"  src="../assets/img/arrow_up@2x.png">
+              <img v-else class="f-p-expand" src="../assets/img/arrow_down@2x.png">
             </div>
 
-            <div v-show="item.expand" style="padding-left: 20px;">
-              <div v-for="val in item.vals" key="val.val" @click.stop="toggleProp(val)"
-                   class="filter-prop-val x-flex-x_start-y_center">
-                <img v-if="val.selected" src="../assets/img/select_sel.png">
-                <img v-else src="../assets/img/select_nor.png">
-                <div style="margin-left: 10px;margin-right: 15px;">{{ val.val }}</div>
-                <div class="filter-reset-txt">({{val.count}})</div>
+            <div v-show="item.expand">
+              <input class="filter-input" placeholder="Search" v-model.trim="item.input" @input="filterPropVal(item)">
+              <div style="padding: 10px 8px;">
+                <div v-for="val in item.vals" key="val.val" @click.stop="toggleProp(val)"
+                     class="flex flex-row items-center cursor-pointer f-p-v" style="padding: 0 14px;line-height: 58px;" v-show="val.visible">
+                  <img v-if="val.selected" class="f-p-icon" src="../assets/img/select_sel@2x.png">
+                  <img v-else class="f-p-icon" src="../assets/img/select_nor@2x.png">
+                  <div style="margin-left: 14px">{{ val.val }}</div>
+                  <div class="f-p-v-count" style="margin-left: 8px;">({{ val.count }})</div>
+                </div>
               </div>
             </div>
+
           </div>
+
         </div>
+
       </div>
-      <div class="x-flex-item-grow" style="margin-left: 50px;">
-        <div class="mech-title">
-          mech angel
-        </div>
-        <div class="x-flex-wrap-x_start-y_start" style="margin-top: 5px;">
-          <div style="margin-right: 10px;">Filter</div>
-          <div v-for="(prop, idx) in selectedProps" :key="idx" @click="removeProp(prop)" class="x-flex-x_start-y_center sel-prop">
-            <span style="margin-right: 5px;">{{ prop.key }} : {{ prop.val }}</span>
-            <img src="../assets/img/close_nor.png">
+      <div class="right grow" style="margin-left: 46px;">
+        <div class="font-poppinss big-text" style="margin-bottom: 16px;">432</div>
+
+        <div class="flex flex-row flex-wrap">
+          <div v-for="(prop, idx) in selectedProps" :key="idx" @click="removeProp(prop)" class="flex flex-row items-center sel-p-v">
+            <span>{{ prop.key }} : {{ prop.val }}</span>
+            <img style="margin-left: 5px;" src="../assets/img/close_nor@2x.png">
           </div>
         </div>
 
-        <div class="x-flex-wrap-x_start-y_start" style="margin-top: 10px;">
+        <div class="flex flex-row flex-wrap" style="margin-top: 22px;">
 
           <div class="gal-item" v-for="item in galleries" :key="item.idx" @click="showGalItemDetail(item)">
             <div class="gal-item-pic">
               <img src="../assets/img/4179.jpeg">
             </div>
-            <div class="gal-item-name">{{ item.name }}</div>
-            <div class="gal-item-idx">{{ item.idx }}</div>
+            <div class="gal-item-name" style="margin-top: 10px;">{{ item.name }}</div>
+            <div class="gal-item-idx" style="margin-top: 4px;">{{ item.idx }}</div>
           </div>
+
         </div>
       </div>
+
+      <GalleryPlayer :pic="gallery" ref="GalleryPlayer">
+      </GalleryPlayer>
     </div>
 
-    <GalleryPlayer :pic="gallery" ref="GalleryPlayer">
-    </GalleryPlayer>
 
   </div>
 </template>
 
 <script>
-import GalleryPlayer from "@/components/GalleryPlayer";
+
+import GalleryPlayer from "../components/GalleryPlayer.vue";
 
 export default {
   name: "Gallery",
@@ -80,6 +89,7 @@ export default {
       galleryProps: null,
       galleries: null,
       gallery: {},
+      search_id: null,
     }
   },
   computed: {
@@ -96,32 +106,30 @@ export default {
       }
       return selvals;
     },
-/*    the_galleries() {
-      if(!this.galleries) {
-        return [];
-      }
-      if(!this.selectedProps || this.selectedProps.length === 0) {
-        return this.galleries;
-      }
-      let gs = [];
-      for(let g of this.galleries) {
-        let done = true;
-        for(let spv of this.selectedProps) {
-          if(!g.props[spv.key] || g.props[spv.key] !== spv.val) {
-            done = false;
-            break;
+    /*    the_galleries() {
+          if(!this.galleries) {
+            return [];
           }
-        }
-        if(done) {
-          gs.push(g);
-        }
-      }
-      return gs;
-    }*/
+          if(!this.selectedProps || this.selectedProps.length === 0) {
+            return this.galleries;
+          }
+          let gs = [];
+          for(let g of this.galleries) {
+            let done = true;
+            for(let spv of this.selectedProps) {
+              if(!g.props[spv.key] || g.props[spv.key] !== spv.val) {
+                done = false;
+                break;
+              }
+            }
+            if(done) {
+              gs.push(g);
+            }
+          }
+          return gs;
+        }*/
   },
   mounted() {
-    document.getElementById("layaContainer").style.display = "none";
-    Laya.stage.renderingEnabled = false;
     this.initIt();
   },
   methods: {
@@ -137,11 +145,13 @@ export default {
             key: pp.key,
             vals: [],
             expand: false,
+            input: null,
           }
           for (let vs of pp.vals) {
             let va = {
               val: vs,
               selected: false,
+              visible: true,
             }
             pvs.vals.push(va);
           }
@@ -180,17 +190,17 @@ export default {
       this.galleries = data;
     },
     initCountByProp() {
-      let countmap  = {};
-      for(let pic of this.galleries) {
-        for(let prop in pic.props) {
-          if(!countmap[prop]) {
+      let countmap = {};
+      for (let pic of this.galleries) {
+        for (let prop in pic.props) {
+          if (!countmap[prop]) {
             countmap[prop] = {
               count: 0,
             };
           }
           let v = pic.props[prop];
           let pp = countmap[prop];
-          if(!pp[v]) {
+          if (!pp[v]) {
             pp[v] = 0;
           }
           countmap[prop].count++;
@@ -200,14 +210,14 @@ export default {
       return countmap;
     },
     resetFilterCount(countmap) {
-      for(let x of this.galleryProps) {
-        if(countmap[x.key]) {
-          x.count =countmap[x.key].count;
+      for (let x of this.galleryProps) {
+        if (countmap[x.key]) {
+          x.count = countmap[x.key].count;
         } else {
           x.count = 0;
         }
-        for(let xx of x.vals) {
-          if(countmap[x.key] && countmap[x.key][xx.val]) {
+        for (let xx of x.vals) {
+          if (countmap[x.key] && countmap[x.key][xx.val]) {
             xx.count = countmap[x.key][xx.val];
           } else {
             xx.count = 0;
@@ -237,6 +247,21 @@ export default {
     },
     togglePropExpand(prop) {
       prop.expand = !prop.expand;
+    },
+
+
+
+    searchById() {
+    },
+    filterPropVal(item) {
+      let reg = new RegExp(item.input, 'i');
+      for (let m of item.vals) {
+        if (reg.test(m.val)) {
+          m.visible = true;
+        } else {
+          m.visible = false;
+        }
+      }
     }
   }
 }
@@ -244,117 +269,130 @@ export default {
 
 <style scoped>
 
-.filter-title .item {
-  margin-right: 10px;
+
+.gallery {
+  background: #160832;
+  min-height: calc(100vh - 66px);
+}
+
+.left {
+  width: 395px;
+  margin-left: 20px;
+}
+
+.big-text {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 42px;
+}
+
+.reset-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+.reset-icon {
+  width: 14px;
+  height: 14px;
 }
 
 .filter-input {
-  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   line-height: 44px;
-  border-radius: 5px;
-  border: 1px solid transparent;
-  background: #FFF;
-  padding: 0 5px;
+  font-size: 14px;
+  width: 100%;
+  padding: 0 12px;
+  background: inherit;
 }
 
-.filter-input:hover, .filter-input:focus {
-  border: 1px solid transparent;
+.filter-input:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.gal-item-pic {
-  transition-duration: .3s;
+.filter-input:focus {
+  border: 1px solid #5C46FF;
+}
+
+.f-p {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  line-height: 62px;
+}
+
+.f-p-v:hover {
+  background: rgba(255,255,255, 0.07);
+  border-radius: 4px;
+}
+
+.f-p-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.f-p-text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.f-p-expand {
+  width: 14px;
+  height: 14px;
+}
+
+.f-p-v-count {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sel-p-v {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0 14px;
   cursor: pointer;
+  margin-right: 10px;
+}
 
+.sel-p-v img {
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
 }
 
 .gal-item {
-  width: 230px;
-  margin-right: 20px;
-}
-
-.gal-item img {
-  width: 100%;
-  object-fit: cover;
-  height: 100%;
-  max-width: 100%;
-  display: block;
-  border-radius: inherit;
+  margin-right: 26px;
+  margin-bottom: 26px;
+  cursor: pointer;
 }
 
 .gal-item-pic {
+  width: 230px;
+  height: 230px;
   border-radius: 10px;
-  aspect-ratio: 1/1;
+  transition: .2s;
+}
+.gal-item-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }
 
 .gal-item:hover .gal-item-pic {
   transform: scaleX(1.05) scaleY(1.05);
 }
+
 .gal-item-name {
-  margin-top: 10px;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  color: #262626;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 18px;
 }
 
 .gal-item-idx {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 20px;
-  color: #8D93A4;
-}
-
-.filter-h1 {
+  font-size: 14px;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 36px;
-  color: #262626;
+  color: #FFFFFF;
+  line-height: 21px;
 }
-
-.filter-reset-icon {
-  margin-right: 14px;
-  display: block;
-}
-
-.filter-reset-txt {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 20px;
-  color: #8D93A4;
-}
-.filter-cate {
-  margin-top: 20px;
-}
-
-.filter-prop-key {
-  cursor: pointer;
-}
-
-.filter-h2 {
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 70px;
-  color: #262626;
-}
-
-.filter-prop-val{
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 66px;
-  color: #262626;
-  cursor: pointer;
-}
-.sel-prop{
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.mech-title {
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 26px;
-
-  color: #000000;
-}
-
 </style>

@@ -1,27 +1,29 @@
 <template>
   <div v-show="visible" class="gal-player" @click="displayit(false)">
 
-    <div class="gal-player-c">
-      <div class="x-flex-x_start-y_start">
-        <div class="gal-pic x-flex-item-shrink0">
+    <div class="gal-player-c" @click.stop="">
+
+      <div class="flex flex-row">
+        <div class="gal-pic shrink-0">
           <img src="../assets/img/4179.jpeg">
         </div>
-        <div class="gal-desc x-flex-item-grow">
-          <div class="x-flex-x_start-y_center">
-            <div class="gal-name x-flex-item-grow">{{pic.name}}</div>
-            <img src="../assets/img/float_looksrare.png">
-            <img src="../assets/img/float_opensea.png"  style="margin-left: 10px;">
-            <img src="../assets/img/float_x2y2.png"  style="margin-left: 10px;">
+        <div class="gal-desc grow">
+          <div class="flex flex-row items-center">
+            <div class="gal-name grow">{{ pic.name }}</div>
+            <img class="p-icon" src="../assets/img/float_looksrare@2x.png">
+            <img class="p-icon" src="../assets/img/float_opensea@2x.png" style="margin-left: 10px;">
+            <img class="p-icon" src="../assets/img/float_x2y2@2x.png" style="margin-left: 10px;">
           </div>
 
-          <div class="">
-            <div v-for="(val, key) in pic.props" :key="key"  class="prop-item x-flex-x_start-y_start">
+          <div class="" style="margin-top: 20px;">
+            <div v-for="(val, key) in pic.props" :key="key" class="prop-item flex">
               <div class="p-k">{{ key }}</div>
               <div class="p-v"> {{ val }}</div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
 
@@ -72,39 +74,42 @@ export default {
   top: 50%;
   z-index: 100;
   transform: translate3d(-50%, -50%, 0px);
-  border-radius: 10px;
-  background: #FFF;
   padding: 20px;
+
   width: 926px;
+  height: 434px;
+  background: #2F214A;
+  box-shadow: 0px 0px 60px 10px rgba(14, 14, 14, 0.4);
+  border-radius: 14px;
 }
+
 
 .gal-pic {
-  width: 350px;
-  height: 350px;
-  border-radius: 10px;
+  width: 394px;
+  height: 394px;
+  border-radius: 20px;
 }
- .gal-pic img {
-   height: 100%;
-   width: 100%;
-   border-radius: inherit;
-   object-fit: cover;
-   display: block;
- }
 
- .gal-desc {
-   margin-left: 20px;
-   padding-top: 20px;
- }
+.gal-pic img {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  display: block;
+}
 
- .prop-item {
-/*   width: 220px;*/
-   height: 49px;
-   padding: 8px 12px;
-   border-radius: 10px;
-   background-color: rgba(255,255,255,0.1);
-   margin: 6px;
-   border-color: rgba(0,0,0,1);
- }
+.gal-desc {
+  margin-left: 20px;
+  padding-top: 20px;
+}
+
+.prop-item {
+  padding-left: 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  line-height: 50px;
+  margin-bottom: 16px;
+}
 
 .prop-key-icon {
   width: 24px;
@@ -113,27 +118,29 @@ export default {
 }
 
 .gal-name {
+  font-size: 30px;
   font-weight: 600;
-  font-size: 32px;
-  line-height: 38px;
-
-  color: #000000;
+  color: #FFFFFF;
+  line-height: 46px;
 }
 
 .p-k {
+  font-size: 16px;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-
-  color: #8D93A4;
+  color: rgba(255, 255, 255, 0.6);
 }
-.p-v {
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
 
-  color: #262626;
-  margin-left: 14px;
+.p-v {
+  margin-left: 16px;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.p-icon {
+  width: 34px;
+  height: 34px;
 }
 
 </style>

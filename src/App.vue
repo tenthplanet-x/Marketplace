@@ -1,36 +1,32 @@
 <template>
-    <div>
-     <!--   <div id="layaContainer"></div>-->
-        <Header class="header"></Header>
+    <div id="app">
+        <HeadNav class="head-nav"/>
+        <div class="page-white"></div>
         <router-view/>
+        <FootNav style="z-index: 100"/>
     </div>
 </template>
 
+
 <script>
-    import Header from "./components/Header";
-    import Storage from "./storage";
+    import HeadNav from "./components/HeadNav.vue";
+    import FootNav from "./components/FootNav.vue";
+
     export default {
-        name: 'App',
-        components: {Header},
-        mounted() {
-            Storage.init();
-        },
-        unmounted() {
-            Storage.destroy();
-        }
-    }
+        components: {HeadNav, FootNav},
+    };
 </script>
 
 <style>
-    @import "./assets/css/index.css";
-</style>
-
-<style scoped>
-    .header {
+    .head-nav {
         position: fixed;
+        width: 100%;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 120px;
+        z-index: 100;
+    }
+
+    .page-white {
+        height: 66px;
     }
 </style>
