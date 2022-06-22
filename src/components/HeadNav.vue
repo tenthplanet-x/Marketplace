@@ -10,7 +10,7 @@
 
     <router-link class="btn" :class="{'btn-curr': navs.roadmap.selected}" :to="navs.roadmap.path">{{navs.roadmap.name}}</router-link>
 
-    <div class="grow"></div>
+    <div class="flex-grow"></div>
     <div class="flex flex-row items-center metamask">
       <img class="metamask-logo" src="../assets/img/homepage_metamask@2x.png" />
       <span>Metamask</span>

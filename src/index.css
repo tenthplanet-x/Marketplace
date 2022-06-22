@@ -17,23 +17,23 @@
     @font-face {
       font-family: Classic Robot;
       font-weight: 400;
-      src: url("../font/ClassicRobot.otf") format("opentype");
+      src: url("./assets/font/ClassicRobot.otf") format("opentype");
     }
 
     @font-face {
       font-family: Dream MMA;
       font-weight: 400;
-      src: url("../font/DreamMMA.ttf") format("truetype");
+      src: url("./assets/font/DreamMMA.ttf") format("truetype");
     }
 
     @font-face {
       font-family: Poppins Regular;
       font-weight: 400;
-      src: url("../font/Poppins-Regular.ttf") format("truetype");
+      src: url("./assets/font/Poppins-Regular.ttf") format("truetype");
     }
     @font-face {
       font-family: Poppins SemiBold;
       font-weight: 400;
-      src: url("../font/Poppins-SemiBold.ttf") format("truetype");
+      src: url("./assets/font/Poppins-SemiBold.ttf") format("truetype");
     }
   }

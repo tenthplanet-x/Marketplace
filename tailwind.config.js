@@ -1,8 +1,9 @@
 module.exports = {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+  purge: [
+      "./index.html",
+      "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
+  darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       'sans': ['Classic Robot', 'Dream MMA', 'Poppins Regular', 'Poppins SemiBold'],
@@ -13,8 +14,10 @@ module.exports = {
       'poppinsr': ['Poppins Regular'],
       'poppinss': ['Poppins SemiBold'],
     },
-    extend: {
-    },
+    extend: {},
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 }

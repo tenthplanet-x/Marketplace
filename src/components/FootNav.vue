@@ -1,7 +1,7 @@
 <template>
   <div class="foot flex flex-col justify-center">
     <div class="flex">
-        <div class="grow"></div>
+        <div class="flex-grow"></div>
       <div class="flex flex-row items-center">
         <img class="logo" src="../assets/img/logo.png" />
         <div class="flex flex-row">
@@ -12,7 +12,7 @@
           <a><img class="icon" src="../assets/img/icon_yotube@2x.png" /></a>
         </div>
       </div>
-       <div class="grow"></div>
+       <div class="flex-grow"></div>
     </div>
   </div>
 </template>

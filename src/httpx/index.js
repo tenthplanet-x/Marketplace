@@ -3,7 +3,7 @@ import {CONSTANT} from "../constant";
 import {getToken} from "../storage";
 
 
-axios.defaults.baseURL = import.meta.env.VITE_APP_SERVER_HOST;
+axios.defaults.baseURL = process.env.VUE_APP_SERVER_HOST;
 
 axios.defaults.timeout = 2500 * 100;
 

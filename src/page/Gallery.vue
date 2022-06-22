@@ -23,7 +23,7 @@
 
             <div class="flex flex-row items-center f-p cursor-pointer" @click.stop="togglePropExpand(item)">
               <img class="f-p-icon" src="../assets/img/gallery_sort@2x.png">
-              <span class="f-p-text grow" style="margin-left: 12px;">{{ item.key }}</span>
+              <span class="f-p-text flex-grow" style="margin-left: 12px;">{{ item.key }}</span>
               <img v-if="item.expand" class="f-p-expand"  src="../assets/img/arrow_up@2x.png">
               <img v-else class="f-p-expand" src="../assets/img/arrow_down@2x.png">
             </div>
@@ -46,7 +46,7 @@
         </div>
 
       </div>
-      <div class="right grow" style="margin-left: 46px;">
+      <div class="right flex-grow" style="margin-left: 46px;">
         <div class="font-poppinss big-text" style="margin-bottom: 16px;">432</div>
 
         <div class="flex flex-row flex-wrap">

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import './assets/css/index.css'
+import './index.css'
 
 
 const app = createApp(App);
@@ -18,8 +18,8 @@ app.use(urlx);
 import httpx from "./httpx";
 app.use(httpx);
 
-//import i18n from "./i18n";
-//app.use(i18n);
+import i18n from "./i18n";
+app.use(i18n);
 
 import Video from 'video.js'
 import 'video.js/dist/video-js.css'

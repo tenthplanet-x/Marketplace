@@ -7,7 +7,7 @@
         <div class="gal-pic shrink-0">
           <img src="../assets/img/4179.jpeg">
         </div>
-        <div class="gal-desc grow">
+        <div class="gal-desc flex-grow">
           <div class="flex flex-row items-center">
             <div class="gal-name grow">{{ pic.name }}</div>
             <img class="p-icon" src="../assets/img/float_looksrare@2x.png">
