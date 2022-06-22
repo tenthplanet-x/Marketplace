@@ -45,3 +45,5 @@ build/
 modules-dir/
 dist/
 public/version.txt
+deploy*.sh
+.env.*
