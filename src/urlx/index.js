@@ -4,8 +4,8 @@ export const URLX = {
     LOGIN: "/account/noauth/login",
     M_LOGIN: '/account/noauth/metamask/login',
     M_SIGN: '/account/noauth/metamask/sign',
-    LOGIN_METAMASK_NONCE: "",
-    LOGIN_METAMASK: "",
+    LOGIN_METAMASK_NONCE: "/account/noauth/login/metamask/nonce",
+    LOGIN_METAMASK: "account/noauth/login/metamask",
     Gallery_Props: "gallery/props",
     Gallery_List: "gallery/list",
 

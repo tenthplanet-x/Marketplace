@@ -11,8 +11,8 @@ export const METAMASK = {
         return false;
     },
     sign(data, address) {
-        let hexdata = window.web3.utils.utf8ToHex(data);
-        return window.web3.eth.personal.sign(hexdata, address);
+      //  let hexdata = window.web3.utils.utf8ToHex(data);
+        return window.web3.eth.personal.sign(data, address);
     }
 };
 

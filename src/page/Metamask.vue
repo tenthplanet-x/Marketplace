@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: black;">
     <div>metamask demo</div>
     <div>
       <button @click.stop="connectMetamask">connect wallat</button>
@@ -43,16 +43,15 @@ export default {
     },
 
     nonceForMetamask() {
-      this.$http.post(this.$urlx.LOGIN_METAMASK_NONCE, {address: this.address}).then(data => {
+      this.$httpx.post(this.$urlx.LOGIN_METAMASK_NONCE, {address: this.address}).then(data => {
         console.log(data);
         this.signdataForLogin(data.nonce);
       });
     },
     signdataForLogin(nonce) {
-      this.$metamaskx.sign(nonce, this.address).then((result, signature) => {
-        console.log(result);
+      this.$metamaskx.sign(nonce, this.address).then((signature) => {
         console.log(signature);
-        this.loginWithMetamask();
+        this.loginWithMetamask(signature,nonce);
       });
     },
 
