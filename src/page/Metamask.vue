@@ -12,6 +12,11 @@
 </template>
 
 <script>
+
+/*https://www.frank.hk/blog/metamask-login/
+    https://demo.frank.hk/demo/metamasklogin*/
+
+
 export default {
   name: "Metamask",
   data() {
