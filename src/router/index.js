@@ -1,9 +1,7 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
 
 
-//import Home from "../page/Home";
 import Gallery from "../page/Gallery.vue";
-//import Mint from "@/page/Mint";
 import Font from "../page/Font.vue";
 
 import Home from "../page/Home.vue";

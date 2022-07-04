@@ -2,16 +2,36 @@ import Web3 from 'web3'
 
 export const METAMASK = {
     async checkPlugin() {
-        if (window.web3) {
-            window.web3 = new Web3(window.web3.currentProvider);
-            web3.eth.defaultAccount = await web3.eth.getCoinbase();
-            console.log(web3.eth.defaultAccount);
-            return true
+        if (typeof window.ethereum !== 'undefined') {
+            console.log('MetaMask is installed!');
+
+            window.web3 = new Web3(Web3.givenProvider);
+
+            return true;
         }
         return false;
     },
+
+    async connetMetamask() {
+        let accs = await window.ethereum.request({method: 'eth_requestAccounts'});
+        console.log(accs);
+        window.web3.defaultAccount = accs[0];
+        const chainId = await ethereum.request({ method: 'eth_chainId' });
+        console.log(chainId);
+        //切换网络事件
+        ethereum.on('chainChanged', (chainId) => {
+            console.log(chainId);
+          //  window.location.reload();
+        });
+        //切换用户事件
+        ethereum.on('accountsChanged', (accs) => {
+            console.log(accs);
+        });
+        return accs[0];
+    },
+
     sign(data, address) {
-      //  let hexdata = window.web3.utils.utf8ToHex(data);
+        //  let hexdata = window.web3.utils.utf8ToHex(data);
         return window.web3.eth.personal.sign(data, address);
     }
 };

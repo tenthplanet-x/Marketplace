@@ -1,21 +1,30 @@
 <template>
   <div style="background: black;">
-    <div>metamask demo</div>
     <div>
-      <button @click.stop="connectMetamask">connect wallat</button>
+      <div>metamask demo</div>
+      <div>
+        <button @click.stop="connectMetamask">connect wallat</button>
+      </div>
+
+      <div>
+        <button @click.stop="nonceForMetamask">login</button>
+      </div>
+
+    </div>
+    <div>
+      <button @click.stop="initContract">xxxxx</button>
     </div>
 
-    <div>
-      <button @click.stop="nonceForMetamask">login</button>
-    </div>
   </div>
 </template>
 
 <script>
 
-/*https://www.frank.hk/blog/metamask-login/
-    https://demo.frank.hk/demo/metamasklogin*/
-
+/*
+ * https://www.frank.hk/blog/metamask-login
+ * https://demo.frank.hk/demo/metamasklogin
+*/
+import ABI_RXGLD from "../assets/contract/RXGLD.json"
 
 export default {
   name: "Metamask",
@@ -37,11 +46,9 @@ export default {
     },
 
     doConnectMetamask() {
-      ethereum.request({method: 'eth_requestAccounts'}).then((result) => {
-        console.log(result);
-        this.address = result[0];
-        console.log("connected!");
-        console.log(this.address);
+      this.$metamaskx.connetMetamask().then((account) => {
+        console.log(account);
+        this.address = account;
       }).catch((err) => {
         console.log(err);
       });
@@ -56,7 +63,7 @@ export default {
     signdataForLogin(nonce) {
       this.$metamaskx.sign(nonce, this.address).then((signature) => {
         console.log(signature);
-        this.loginWithMetamask(signature,nonce);
+        this.loginWithMetamask(signature, nonce);
       });
     },
 
@@ -69,6 +76,11 @@ export default {
       this.$httpx.post(this.$urlx.LOGIN_METAMASK, d).then(data => {
         console.log(data);
       });
+    },
+    initContract() {
+      let myContract = new web3.eth.Contract(ABI_RXGLD, '0x5E3E0473217b3A813Ed226AC9509A818fEDebb9B');
+      console.log("xx");
+      myContract.methods.getBalance().call().then(console.log);
     }
   }
 }
