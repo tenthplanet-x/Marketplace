@@ -81,6 +81,18 @@ export default {
       let myContract = new web3.eth.Contract(ABI_RXGLD, '0x5E3E0473217b3A813Ed226AC9509A818fEDebb9B');
       console.log("xx");
       myContract.methods.getBalance().call().then(console.log);
+      myContract.events.Log({}, (error, event) => {
+        console.log(event);
+      }).on("connected", (subscriptionId) => {
+        console.log(subscriptionId);
+      }).on('data', (event) => {
+        console.log(event);
+      }).on('changed', (event) => {
+        console.log(event);
+      }).on('error', (error, receipt) => {
+        console.log(error);
+        console.log(receipt);
+      });
     }
   }
 }
